@@ -14,6 +14,7 @@ interface Customer extends Document {
     bannedReason?: string;
 }
 
+
 const CustomerSchema: Schema<Customer> = new Schema({
     isDeleted: {
         type: Boolean,
