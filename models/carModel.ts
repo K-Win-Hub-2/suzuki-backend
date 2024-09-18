@@ -5,6 +5,7 @@ interface Carmodel extends Document {
     isDeleted: boolean,
     name: string,
     date: Date,
+    url: string,
     model_number: string
 }
 
@@ -20,6 +21,9 @@ const CarModelSchema: Schema<Carmodel> = new Schema({
    date: {
         type: Date,
         default: Date.now
+   },
+   url: {
+    type: String,
    },
    model_number: {
         type: String
