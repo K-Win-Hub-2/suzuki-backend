@@ -57,11 +57,6 @@ class AdminAccountService{
     public async updateById(id: mongoose.Types.ObjectId,datas: UserDatas){
          datas.isSuperAdmin = this.isSuperAdmin
          const formattedData = superAdminAccountDataToImplementDatabase(datas)// if email exists in update data, then search new email in database and it exists in database, return can't use two email response
-        //  if(formattedData.email){
-        //     const searchAccount = await AdminUsers.findOne({email: formattedData.email})
-        //     if(searchAccount) return  errorResponse({ statusCode:201, message: "This email is already taken", data: null})
-        //  }
-        
          if(process.env.NODE_ENV === "development"){
           console.log("formatted",id, formattedData)
          }
