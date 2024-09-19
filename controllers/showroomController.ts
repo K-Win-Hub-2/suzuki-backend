@@ -23,6 +23,7 @@ export const updateShowroom = async (req: Request, res: Response) => {
     res.status(data.statusCode).json(data)
 } 
 
+
  //this is to delete
  export const deleteShowroom = async (req: Request, res: Response) =>{
     const data = await showroomService.delete(new mongoose.Types.ObjectId(req.params.id))
