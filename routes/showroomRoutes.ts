@@ -10,7 +10,7 @@ module.exports = (app: Express): void =>{
         .post(verifyToken, S3UploadImage.single("showroom_image"), checkAdminType, catchError(createShowroom))
 
     app.route("/api/v1/showroom/:id")
-       .put(verifyToken, checkAdminType, catchError(updateShowroom))
+       .put(verifyToken, S3UploadImage.single("showroom_image"), checkAdminType, catchError(updateShowroom))
        .get(verifyToken, catchError(readShowroom))
        .delete(verifyToken, checkAdminType, catchError(deleteShowroom))
 }

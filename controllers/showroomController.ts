@@ -19,7 +19,7 @@ export const createShowroom = async (req: Request, res: Response) => {
 }
 
 export const updateShowroom = async (req: Request, res: Response) => {
-    const data = await showroomService.updateById(new mongoose.Types.ObjectId(req.params.id), req.body)
+    const data = await showroomService.updateById(req.file, new mongoose.Types.ObjectId(req.params.id), req.body)
     res.status(data.statusCode).json(data)
 } 
 

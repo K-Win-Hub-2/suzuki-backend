@@ -24,7 +24,10 @@ class ShowroomServiceClass {
           const result = await Showrooms.findById(id)
           return successResponse({ statusCode:200, message: "This is Showroom by id", data: result})  
     }
-    async updateById(id: mongoose.Types.ObjectId, datas: Showroom){
+    async updateById(file: any, id: mongoose.Types.ObjectId, datas: Showroom){
+        if(file){
+            datas.url = file.location
+         }
          const result = await Showrooms.findByIdAndUpdate(id, datas, { new: true })
          return successResponse({ statusCode:200, message: "Showroom Updated successfully", data: result})
     }
