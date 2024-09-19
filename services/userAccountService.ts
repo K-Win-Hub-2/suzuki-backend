@@ -77,7 +77,7 @@ class CustomerAccountService {
     public async read(datas: Partial<CustomerData>){
         const result = await Customers.findOne(datas)
         if(process.env.NODE_ENV === "development"){
-           console.log("re",result, datas)
+           console.log("Result",result, datas)
         }
         return result
        }
