@@ -61,6 +61,7 @@ class AdminAccountService{
         //     const searchAccount = await AdminUsers.findOne({email: formattedData.email})
         //     if(searchAccount) return  errorResponse({ statusCode:201, message: "This email is already taken", data: null})
         //  }
+        
          if(process.env.NODE_ENV === "development"){
           console.log("formatted",id, formattedData)
          }
