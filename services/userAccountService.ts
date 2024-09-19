@@ -99,10 +99,6 @@ class CustomerAccountService {
     }
     public async updateById(id: mongoose.Types.ObjectId,datas: CustomerData){
          const formattedData = customerDataToImplementDatabase(datas)// if email exists in update data, then search new email in database and it exists in database, return can't use two email response
-        //  if(formattedData.email){
-        //     const searchAccount = await Customers.findOne({email: formattedData.email})
-        //     if(searchAccount) return  errorResponse({ statusCode:201, message: "This email is already taken", data: null})
-        //  }
          const result = await Customers.findOneAndUpdate({_id: id}, formattedData, { new: true })
          return successResponse({ statusCode:200, message: "User Account Updated successfully", data: result})
     }
