@@ -2,13 +2,14 @@ import mongoose from "mongoose"
 import { successResponse } from "../helpers/responseHelper"
 import { Carmodel, Carmodels } from "../models/carModel"
 import "dotenv/config";
+import { CarPartTitleCategoriesModels } from "../models/carPartCategoriesModel";
 
-class CarModelServiceClass {
+class CarCategoriesServiceClass {
     constructor() {}
     async listAll(){
         const query = { isDeleted: false }
-        const data = await Carmodels.find(query)
-        return successResponse({statusCode: 200, message: "These are all Car Model datas", data: data})
+        const data = await CarPartTitleCategoriesModels.find(query)
+        return successResponse({statusCode: 200, message: "These are all Car Part Categories datas", data: data})
     }
     async create(file: any,data: Carmodel){
         if(process.env.NODE_ENV === "development") {
@@ -17,7 +18,7 @@ class CarModelServiceClass {
          if(file){
             data.url = file.location
          }
-         const result = await Carmodels.create(data)
+         const result = await CarPartTitleCategoriesModels.create(data)
          return successResponse({ statusCode:200, message: "Car Model Created successfully", data: result})
     }
     async readById(id: mongoose.Types.ObjectId){
@@ -37,4 +38,4 @@ class CarModelServiceClass {
     }
 }
 
-export default new CarModelServiceClass() 
+export default new CarCategoriesServiceClass() 

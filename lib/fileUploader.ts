@@ -8,10 +8,10 @@ import path from "path"
 const S3Storage = multerS3({
     s3: s3,
     bucket: process.env.BUCKET_NAME as string,
-    metadata: (req: Request, file:any , cb: any) => {
+    metadata: (req: any, file: any, cb: any)  => {
         cb(null, {fieldname: file.fieldname})
     },
-    key: (req: Request, file:any , cb: any) => {
+    key: (req: any, file: any, cb: any) => {
         if(process.env.NODE_ENV === "development") {
             console.log("file",file)
         }

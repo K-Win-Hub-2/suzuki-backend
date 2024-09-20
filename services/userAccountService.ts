@@ -39,13 +39,16 @@ class AdminAccountService{
         const users = await AdminUsers.find(query).select("-password").populate("showroom")
         return successResponse({statusCode: 200, message: "These are all admin datas", data: users})
     }
-    public async create(data: AdminUser ){
+    public async create(file: any, data: AdminUser ){
          data.isSuperAdmin = this.isSuperAdmin
          //search account for this email exist or not
          const searchAccount = await AdminUsers.findOne({email: data.email})
          if(searchAccount) return  errorResponse({ statusCode:201, message: "This email is already taken", data: null})
          if(process.env.NODE_ENV === "development"){
            console.log("admin formatted",data)
+         }
+         if(file){
+            data.url = file.location
          }
          const result = await AdminUsers.create(data)
          return successResponse({ statusCode:200, message: "User Created successfully", data: result}) 
@@ -54,8 +57,11 @@ class AdminAccountService{
           const result = await AdminUsers.findById(id).populate("showroom")
           return successResponse({ statusCode:200, message: "This is user by id", data: result})  
     }
-    public async updateById(id: mongoose.Types.ObjectId,datas: UserDatas){
+    public async updateById(file: any, id: mongoose.Types.ObjectId,datas: UserDatas){
          datas.isSuperAdmin = this.isSuperAdmin
+         if(file){
+            datas.url = file.location
+         }
          const formattedData = superAdminAccountDataToImplementDatabase(datas)// if email exists in update data, then search new email in database and it exists in database, return can't use two email response
          if(process.env.NODE_ENV === "development"){
           console.log("formatted",id, formattedData)
@@ -85,7 +91,10 @@ class CustomerAccountService {
         const users = await Customers.find().select("-password")
         return successResponse({statusCode: 200, message: "These are all user datas", data: users})
     }
-    public async create(data: CustomerData){
+    public async create(file: any, data: CustomerData){
+        if(file){
+            data.url = file.location
+         }
          const formattedData = customerDataToImplementDatabase(data)
          //search account for this email exist or not
          const searchAccount = await Customers.findOne({email: formattedData.email})
@@ -97,7 +106,10 @@ class CustomerAccountService {
           const result = await Customers.findById(id)
           return successResponse({ statusCode:200, message: "This is user by id", data: result})
     }
-    public async updateById(id: mongoose.Types.ObjectId,datas: CustomerData){
+    public async updateById(file: any, id: mongoose.Types.ObjectId,datas: CustomerData){
+        if(file){
+            datas.url = file.location
+         }
          const formattedData = customerDataToImplementDatabase(datas)// if email exists in update data, then search new email in database and it exists in database, return can't use two email response
          const result = await Customers.findOneAndUpdate({_id: id}, formattedData, { new: true })
          return successResponse({ statusCode:200, message: "User Account Updated successfully", data: result})

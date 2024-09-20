@@ -18,6 +18,14 @@ interface AdminUser extends Document {
     createdAt: Date;
     isBanned: boolean;
     bannedReason?: string;
+    //showroom infos
+    url: string,
+    date: Date,
+    openDays: string,
+    openHours: string,
+    latitude: string,
+    longitude: string,
+    description: string
 }
 
 const AdminUserSchema: Schema = new Schema({
@@ -69,6 +77,28 @@ const AdminUserSchema: Schema = new Schema({
         default: false,
     },
     bannedReason: {
+        type: String,
+    },
+    //showroom info
+    url: {
+        type: String,
+    },
+    date: {
+        type: Date,
+    },
+    openDays: {
+        type: String,
+    },
+    openHours: {
+        type: String,
+    },
+    latitude: {
+        type: String,
+    },
+    longitude: {
+        type: String,
+    },
+    description: {
         type: String,
     }
 });

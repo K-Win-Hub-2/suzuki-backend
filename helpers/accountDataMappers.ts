@@ -1,18 +1,19 @@
 interface UserDatas {
-    isSuperAdmin: boolean;
+    isSuperAdmin: boolean,
     showroom: string | null,
-    name: string | null;
-    userName: string | null;
-    code: string | null;
-    email: string | null;
-    password: string | null;
-    phone: string | null;
-    address: string | null;
-    townShip: string | null;
-    region: string | null;
-    state: string | null;
-    isBanned: boolean | null;
-    bannedReason: string | null;
+    name: string | null,
+    userName: string | null,
+    code: string | null,
+    email: string | null,
+    password: string | null,
+    phone: string | null,
+    address: string | null,
+    townShip: string | null,
+    region: string | null,
+    state: string | null,
+    isBanned: boolean | null,
+    bannedReason: string | null,
+    url: string | null
 }
 
 //filter null from parameter
@@ -47,6 +48,7 @@ interface CustomerData {
     address: string | null,
     isBanned: boolean | null,
     bannedReason: string | null,
+    url: string | null
 }
 const customerDataToImplementDatabase = (data: CustomerData): Partial<CustomerData> => {
     return filterNullOrUndefined({

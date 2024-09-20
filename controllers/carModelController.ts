@@ -18,7 +18,7 @@ export const createCarModel = async (req: Request, res: Response) => {
 }
 
 export const updateCarModel = async (req: Request, res: Response) => {
-    const data = await CarModelService.updateById(new mongoose.Types.ObjectId(req.params.id), req.body)
+    const data = await CarModelService.updateById(req.file, new mongoose.Types.ObjectId(req.params.id), req.body)
     res.status(data.statusCode).json(data)
 } 
 

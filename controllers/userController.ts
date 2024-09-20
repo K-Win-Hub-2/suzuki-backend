@@ -14,7 +14,7 @@ export const listAllUser = async(req: Request, res: Response) => {
 
 export const createUser = async(req: Request, res: Response) => {
     const { r } = req.query
-    const data = await account.accountType(r as string).create(req.body)
+    const data = await account.accountType(r as string).create(req.file, req.body)
     res.status(data.statusCode).json(data)
 }
 
@@ -28,7 +28,7 @@ export const  updateUser = async (req: Request, res: Response) => {
     const { r } = req.query
     //if the user isn't super admin and user id from param is not equal to user id of login user
     if(!req.user.isSuperAdmin) req.body.isSuperAdmin = false
-    const data = await account.accountType(r as string).updateById(new mongoose.Types.ObjectId(req.params.id), req.body)
+    const data = await account.accountType(r as string).updateById(req.file, new mongoose.Types.ObjectId(req.params.id), req.body)
     res.status(data.statusCode).json(data)
 }
 
