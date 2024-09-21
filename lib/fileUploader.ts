@@ -9,6 +9,7 @@ const S3Storage = multerS3({
     s3: s3,
     bucket: process.env.BUCKET_NAME as string,
     metadata: (req: any, file: any, cb: any)  => {
+        console.log("me",file)
         cb(null, {fieldname: file.fieldname})
     },
     key: (req: any, file: any, cb: any) => {

@@ -7,10 +7,10 @@ import catchError from "../lib/catchError"
 module.exports = (app: Express): void =>{
     app.route("/api/v1/users")
         .get(verifyToken, checkAdminType, catchError(listAllUser))
-        .post(S3UploadImage.single("profile"), catchError(createUser))
+        .post(S3UploadImage.single("image"), catchError(createUser))
 
     app.route("/api/v1/user/:id")
-       .put(verifyToken, checkAdminOrSelf, S3UploadImage.single("profile"), catchError(updateUser))
+       .put(verifyToken, checkAdminOrSelf, S3UploadImage.single("image"), catchError(updateUser))
        .get(verifyToken, catchError(readUser))
        .delete(verifyToken, checkAdminOrSelf, catchError(deleteUser))
 }
