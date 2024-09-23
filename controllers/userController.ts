@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { UserAccountServiceFactory } from '../services/userAccountService'
-import { errorResponse } from '../helpers/responseHelper'
 import mongoose from "mongoose"
 
 const account = new UserAccountServiceFactory()
